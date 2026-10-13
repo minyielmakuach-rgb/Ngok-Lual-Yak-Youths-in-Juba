@@ -42,43 +42,6 @@ body::before {
   }
 }
 
-
-  
-header{padding:12px 4%;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--blue);position:sticky;top:0;background:var(--bg);z-index:90}
-.logo{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--blue);font-size:14px}.logo img{width:42px;height:42px;border-radius:50%;border:2px solid var(--blue)}
-.hamburger{font-size:22px;cursor:pointer;background:var(--blue);color:#fff;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center}
-#sidebar{position:fixed;top:0;right:-300px;width:285px;height:100vh;background:var(--bg);z-index:200;transition:0.3s;box-shadow:-10px 0 30px #0003;overflow:auto}
-#sidebar.open{right:0}
-#overlay{display:none;position:fixed;inset:0;background:#0006;z-index:150}
-#overlay.show{display:block}
-.side-head{background:linear-gradient(135deg,var(--blue),var(--dark));color:#fff;padding:18px;text-align:center}
-.side-head img{width:65px;height:65px;border-radius:50%;border:3px solid #fff;background:#fff}
-.side-menu a{display:block;padding:13px 18px;text-decoration:none;color:var(--text);border-bottom:1px solid #eee;font-weight:600;font-size:13px}
-.side-menu a.active{background:var(--blue);color:#fff}
-#ticker{background:var(--red);color:#fff;padding:6px 0;white-space:nowrap;overflow:hidden;position:sticky;top:58px;z-index:80;font-size:12px;font-weight:700}
-#ticker span{display:inline-block;animation:scroll 25s linear infinite;padding-left:100%}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
-.hero{background:linear-gradient(135deg,#1e3a8a,#0f172a);color:#fff;padding:60px 5%;text-align:center}
-.hero img{width:110px;height:110px;border-radius:50%;border:4px solid #fff;background:#fff}
-.motto{background:#fff;color:var(--blue);padding:6px 18px;border-radius:30px;font-weight:900;display:inline-block;margin:12px 0;font-size:13px}
-.btn{padding:11px 18px;border-radius:8px;font-weight:800;margin:4px;display:inline-block;font-size:12px;cursor:pointer;border:none;text-decoration:none}
-.btn-white{background:#fff;color:var(--blue)}.btn-red{background:var(--red);color:#fff}.btn-blue{background:var(--blue);color:#fff}
-.section{padding:28px 4%}.section h2{color:var(--blue);border-left:6px solid var(--red);padding-left:10px;margin-bottom:14px;font-size:18px}
-.card{background:var(--card);border-radius:12px;border:1px solid #e2e8f0;overflow:hidden;margin:10px 0}.card-content{padding:14px;font-size:13.5px;line-height:1.7}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:8px}
-.gallery div{height:150px;border-radius:10px;background-size:cover;background-position:center;display:flex;align-items:flex-end;padding:6px;background-color:#e2e8f0}
-.news-img{width:100%;height:190px;object-fit:cover;background:#e2e8f0}
-.page{display:none}.page.active{display:block;min-height:220vh}
-#submitPhotoPanel,#submitNewsPanel,#adminPanel{display:none;position:fixed;inset:0;background:#000c;z-index:999;overflow:auto;padding:12px}
-.modal{background:var(--bg);max-width:600px;margin:20px auto;padding:18px;border-radius:16px;color:var(--text)}
-input,textarea{width:100%;padding:11px;margin:6px 0;border:1px solid #cbd5e1;border-radius:8px;font-size:13px;background:var(--bg);color:var(--text)}
-.pending-item{display:flex;gap:10px;border:1px solid #e2e8f0;padding:10px;border-radius:10px;margin:8px 0;align-items:center;background:var(--card)}
-.pending-item img{width:60px;height:60px;object-fit:cover;border-radius:8px}
-#waBtn{position:fixed;bottom:20px;right:20px;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:28px;z-index:100;box-shadow:0 4px 15px #0004;text-decoration:none}
-#installBtn{display:none;position:fixed;bottom:85px;right:20px;background:var(--blue);color:#fff;padding:10px 14px;border-radius:30px;font-size:11px;font-weight:800;z-index:100;border:none}
-</style>
-</head>
 <body>
 <div id="overlay" onclick="closeSidebar()"></div>
 <div id="sidebar">
@@ -166,7 +129,7 @@ input,textarea{width:100%;padding:11px;margin:6px 0;border:1px solid #cbd5e1;bor
 
 <div id="page-contact" class="page"><div class="section"><h2>Contact</h2><div class="grid"><div class="card"><div class="card-content"><b>Office:</b> Konyokonyo Market, Juba (near main mosque)<br><b>Phone:</b> 0921 776 159 / 0920 616 316<br><b>Email:</b> Minyielmakuach@gmail.com<br><b>Facebook:</b> NLYSAUHI Page 3K followers<br><b>Meeting:</b> Executive Sat 4PM, General Assembly Sun 3PM</div></div><div class="card"><div class="card-content"><form action="https://formsubmit.co/Minyielmakuach@gmail.com" method="POST"><input type="hidden" name="_captcha" value="false"><input name="Name" placeholder="Your Name" required><input name="Email" placeholder="Email"><textarea name="Message" placeholder="Message" rows="4" required></textarea><button class="btn btn-blue" style="width:100%">Send</button></form></div></div></div><div class="card"><div class="card-content">Directions: From Custom roundabout to Konyokonyo market, ask for Ngok Lual Yak tea place, office behind, banner Education is Light. Response within 24 hours. Urgent welfare call official numbers.</div></div></div></div>
 
-<footer style="background:var(--dark);color:#94a3b8;padding:20px;text-align:center;font-size:11px">© 2026 NLYSAUHI • Jebel Dinka, Juba • 0920616316 • Minyielmakuach@gmail.com<br><span id="footerVisitors"></span> <button onclick="toggleDark()" style="background:#fff;color:#000;padding:2px 8px;border-radius:10px;border:none;font-size:10px">Dark Mode</button></footer>
+<footer style="padding:20px;text-align:center;font-size:11px">© 2026 NLYSAUHI • Jebel Dinka, Juba • 0920616316 • Minyielmakuach@gmail.com<br><span id="footerVisitors"></span> <button onclick="toggleDark()" style="background:#fff;color:#000;padding:2px 8px;border-radius:10px;border:none;font-size:10px">Dark Mode</button></footer>
 
 <a id="waBtn" href="https://wa.me/211920616316?text=Hello%20NLYSAUHI" target="_blank">💬</a>
 <button id="installBtn" onclick="installPWA()">📲 Install App</button>
