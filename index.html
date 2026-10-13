@@ -13,7 +13,37 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui;font-size: 20px;}
 :root{--blue:#1e3a8a;--red:#b91c1c;--dark:#0f172a;--bg:#fff;--card:#f8fafc;--text:#1e293b}
 body.dark{--bg:#0f172a;--card:#1e293b;--text:#e2e8f0;background:var(--bg);color:var(--text)}
-body{background:var(--bg);color:var(--text)}
+/* LOGO BACKGROUND - Adjusts to device width */
+body {
+  background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhq-FQySbP1sVGXfS_8P5yami4CUyQgzTsUz3k-YSrSHtwcergpzwoJsZY1fcPAgkwbUZKkwteNHQo66wFG0QIQMftKQPjMqZ7nkVTYNoONpSta33MvFYhd4hNjoE7BYaVxu6U0aKlzud94qciYCjpqF_5XrSPH7gEm_dOhIXhBN9FxhQ/s1600/Logo.jpeg');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* TRANSPARENT LAYER - Makes text readable */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255,255,255,0.85);
+  z-index: -1;
+}
+
+/* MOBILE - Logo fits width */
+@media (max-width: 600px) {
+  body {
+    background-size: contain;
+    background-color: #f5f5f5;
+  }
+}
+
+
+  
 header{padding:12px 4%;display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid var(--blue);position:sticky;top:0;background:var(--bg);z-index:90}
 .logo{display:flex;align-items:center;gap:10px;font-weight:900;color:var(--blue);font-size:14px}.logo img{width:42px;height:42px;border-radius:50%;border:2px solid var(--blue)}
 .hamburger{font-size:22px;cursor:pointer;background:var(--blue);color:#fff;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center}
