@@ -41,9 +41,117 @@ body::before {
     background-color: #f5f5f5;
   }
 }
+</style>
+<body>
+<div class="card">
+<h1>Physics Objective Questions</h1>
+<div class="sub">Shuffled • Score out of 100% • No Internet Needed</div>
+<div id="progress"><div id="bar"></div></div>
+<div id="quiz" style="margin-top:15px"><p>Loading questions...</p></div>
+<div id="result" style="display:none"></div>
+<button id="next" style="display:none">Next →</button>
+<button id="restart" style="display:none">Restart 🔄</button>
+</div>
 
+<script>
+// All questions - fixed
+var QUESTIONS=[
+{q:"Non-physical quantity?",a:"Temperature",b:"Density",c:"Colour",d:"Distance",ans:"c"},
+{q:"Base quantity?",a:"Speed",b:"Temperature",c:"Density",d:"Volume",ans:"b"},
+{q:"SI unit of intensity of light",a:"Ampere",b:"Candela",c:"Kelvin",d:"Mole",ans:"b"},
+{q:"Base units in SI",a:"Three",b:"Five",c:"Six",d:"Seven",ans:"d"},
+{q:"Pascal is SI unit of",a:"Force",b:"Tension",c:"Pressure",d:"Speed",ans:"c"},
+{q:"Distance is a ____ quantity.",a:"Vector",b:"Scalar",c:"Base",d:"Derived",ans:"b"},
+{q:"Which is a vector quantity?",a:"Speed",b:"Weight",c:"Work",d:"Frequency",ans:"b"},
+{q:"Product of velocity and time",a:"Force",b:"Acceleration",c:"Displacement",d:"Distance",ans:"c"},
+{q:"Shortest distance between points",a:"Distance",b:"Displacement",c:"Speed",d:"Velocity",ans:"b"},
+{q:"First law also called",a:"Momentum",b:"Inertia",c:"Gravitation",d:"Force",ans:"b"},
+{q:"Product of mass and velocity",a:"Force",b:"Power",c:"Torque",d:"Momentum",ans:"d"},
+{q:"Scalar described by",a:"Magnitude",b:"Direction",c:"Force",d:"Weight",ans:"a"},
+{q:"Which is a vector? Weight",a:"Speed",b:"Frequency",c:"Weight",d:"Work",ans:"c"},
+{q:"Scalar quantity",a:"Acceleration",b:"Velocity",c:"Weight",d:"Energy",ans:"d"},
+{q:"If body does not change position",a:"Rest",b:"Motion",c:"Variable",d:"Uniform",ans:"a"},
+{q:"Length of actual path",a:"Distance",b:"Displacement",c:"Velocity",d:"Speed",ans:"a"},
+{q:"Negative acceleration if velocity",a:"Increases",b:"Decreases",c:"Constant",d:"Zero",ans:"b"},
+{q:"Uniform velocity, acceleration is",a:"Positive",b:"Negative",c:"Zero",d:"Constant",ans:"c"},
+{q:"Non-contact force",a:"Friction",b:"Air resistance",c:"Magnetic",d:"Tension",ans:"c"},
+{q:"Contact force",a:"Friction",b:"Magnetic",c:"Electrostatic",d:"Gravitational",ans:"a"},
+{q:"Weight w =",a:"mg",b:"m/g",c:"g/m",d:"1/mg",ans:"a"},
+{q:"SI unit of Force",a:"Joule",b:"Newton",c:"Pascal",d:"Ampere",ans:"b"},
+{q:"Forces added by",a:"Head-to-tail",b:"Left hand",c:"Right hand",d:"Arithmetic",ans:"a"},
+{q:"Moment of force called",a:"Torque",b:"Momentum",c:"Couple",d:"Work",ans:"a"},
+{q:"SI unit of torque",a:"Nm",b:"Ns",c:"J",d:"Watt",ans:"a"},
+{q:"Types of equilibrium",a:"One",b:"Two",c:"Three",d:"Four",ans:"c"},
+{q:"Centripetal force work",a:"Max",b:"Min",c:"Negative",d:"No work",ans:"d"},
+{q:"Work max when angle",a:"0°",b:"30°",c:"60°",d:"90°",ans:"a"},
+{q:"Force x displacement",a:"Energy",b:"Work",c:"Power",d:"Both",ans:"b"},
+{q:"SI unit of work",a:"Newton",b:"Joule",c:"Pascal",d:"Watt",ans:"b"},
+{q:"65N pulling 20m work",a:"1300 J",b:"45 N",c:"8 J",d:"1125 J",ans:"a"},
+{q:"Rate of doing work",a:"Work",b:"Force",c:"Newton",d:"Power",ans:"d"},
+{q:"100J in 5s power",a:"10 W",b:"20 W",c:"105 W",d:"500 W",ans:"b"},
+{q:"SI unit of power",a:"Joule",b:"Watt",c:"Newton",d:"Erg",ans:"b"},
+{q:"Most elastic material",a:"Rubber",b:"Wood",c:"Steel",d:"Glass",ans:"c"},
+{q:"SI unit of pressure",a:"Kg",b:"N",c:"Pascal",d:"J",ans:"c"},
+{q:"Force on unit area",a:"Density",b:"Pressure",c:"Elasticity",d:"Force",ans:"b"},
+{q:"Pressure increases with",a:"Base",b:"Volume",c:"Depth",d:"Mass",ans:"c"}
+];
 
-  
+var qs=[], idx=0, score=0;
 
+function shuffle(a){
+  var b=a.slice();
+  for(var i=b.length-1;i>0;i--){
+    var j=Math.floor(Math.random()*(i+1));
+    var t=b[i];b[i]=b[j];b[j]=t;
+  }
+  return b;
+}
+
+function showQ(){
+  if(idx>=qs.length){showResult();return}
+  var q=qs[idx];
+  document.getElementById('bar').style.width=(idx/qs.length*100)+'%';
+  document.getElementById('quiz').innerHTML='<b>Q'+(idx+1)+'/'+qs.length+': '+q.q+'</b><div class="option" onclick="check(\'a\',this)">a) '+q.a+'</div><div class="option" onclick="check(\'b\',this)">b) '+q.b+'</div><div class="option" onclick="check(\'c\',this)">c) '+q.c+'</div><div class="option" onclick="check(\'d\',this)">d) '+q.d+'</div>';
+  document.getElementById('next').style.display='none';
+}
+
+function check(choice, el){
+  var q=qs[idx];
+  var opts=document.querySelectorAll('.option');
+  for(var i=0;i<opts.length;i++) opts[i].style.pointerEvents='none';
+  if(choice===q.ans){el.classList.add('correct');score++;}else{el.classList.add('wrong');for(var j=0;j<opts.length;j++){if(opts[j].textContent.trim().indexOf(q.ans+')')===0 || opts[j].textContent.trim().startsWith(q.ans+')'))opts[j].classList.add('correct')}}
+  document.getElementById('next').style.display='block';
+}
+
+function nextQ(){idx++;showQ()}
+function showResult(){
+  document.getElementById('bar').style.width='100%';
+  document.getElementById('quiz').innerHTML='';
+  document.getElementById('next').style.display='none';
+  var pct=Math.round(score/qs.length*100);
+  var grade=pct>=80?'A - Excellent':pct>=70?'B - Very Good':pct>=60?'C - Good':pct>=50?'D - Pass':'F - Try Again';
+  var res=document.getElementById('result');
+  res.style.display='block';
+  res.innerHTML='<div class="score-big">'+score+'/'+qs.length+'<br>'+pct+'% out of 100%</div><div style="text-align:center;font-weight:bold;margin-top:8px">'+grade+'</div>';
+  document.getElementById('restart').style.display='block';
+}
+
+function start(){
+  qs=shuffle(QUESTIONS);
+  idx=0;score=0;
+  document.getElementById('result').style.display='none';
+  document.getElementById('restart').style.display='none';
+  showQ();
+}
+
+// Buttons
+document.getElementById('next').onclick=function(){nextQ()};
+document.getElementById('restart').onclick=function(){start()};
+
+// Start when page loads
+window.onload=start;
+</script>
+</body>
+</html>
   
  
